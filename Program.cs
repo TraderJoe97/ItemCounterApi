@@ -2,7 +2,11 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "80";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -14,25 +18,25 @@ builder.Services.AddSwaggerGen(options =>
         Description = "API that counts how many times each item appears in a list"
     });
 
-    // Include XML comments in Swagger
     var xmlFilename = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
 var app = builder.Build();
 
-// Configure middleware
+// Swagger only in development or enable always
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "Item Counter API v1");
-        options.RoutePrefix = string.Empty; // Swagger UI at root
+        options.RoutePrefix = string.Empty;
     });
 }
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
 app.Run();
