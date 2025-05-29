@@ -1,1 +1,2 @@
-@ItemCounterApi_HostAddress = http://localhost:5287
+@ItemCounterApi_HostAddress = http://localhost:80
+
