@@ -39,7 +39,8 @@ This provides a user-friendly interface to explore and test the API endpoints.
 
 ### Base URL
 
-http://<host>:<port>
+https://itemcounterapi-production.up.railway.app/
+
 ### Endpoints
 
 #### `POST /api/itemcount`
