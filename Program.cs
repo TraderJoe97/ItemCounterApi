@@ -1,5 +1,6 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
+using ItemCounterApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

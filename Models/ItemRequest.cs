@@ -32,7 +32,7 @@ public class ItemRequestExample : IExamplesProvider<ItemRequest>
     {
         return new ItemRequest
         {
-            Items = new List<object> { "apple", 42, true, "apple", null, 42 }
+                Items = new List<object?> { "apple", 42, true, "apple", null, 42 }
         };
     }
 }
