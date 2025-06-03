@@ -37,9 +37,12 @@ namespace ItemCounterApi.Controllers
 
         private Dictionary<T, int> CountOccurrences<T>(IEnumerable<T> items) where T : notnull
         {
-            return items
-                .GroupBy(item => item)
-                .ToDictionary(group => group.Key, group => group.Count());
+            var counts = new Dictionary<T, int>();
+            foreach (var item in items)
+            {
+                counts[item] = counts.GetValueOrDefault(item, 0) + 1;
+            }
+            return counts;
         }
     }
 }
