@@ -26,6 +26,8 @@ builder.Services.AddSwaggerGen(options =>
     options.ExampleFilters();
 });
 
+builder.Services.AddSwaggerExamplesFromAssemblyOf<ItemRequestExample>();
+
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(options =>
@@ -38,7 +40,5 @@ app.UseSwaggerUI(options =>
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
-builder.Services.AddSwaggerExamplesFromAssemblyOf<ItemRequestExample>();
 
 app.Run();
