@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ItemCounterApi.Models;
 using System.Text.Json;
 using System.Net.Mime;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace ItemCounterApi.Controllers
 {
@@ -60,6 +61,7 @@ namespace ItemCounterApi.Controllers
         [Consumes(MediaTypeNames.Application.Json)]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Dictionary<string, int>))]
+        [SwaggerRequestExample(typeof(ItemRequest), typeof(ItemRequestExample))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult CountItems([FromBody] ItemRequest request)
         {
